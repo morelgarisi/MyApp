@@ -1,0 +1,102 @@
+
+<div class="ui negative message" *ngIf="isTaskExists">
+        <i class="close icon"></i>
+        <div class="header">
+         Task Order Already exists
+        </div>
+</div>
+
+
+<!--
+<form class="ui form">
+        <div class="three fields" >
+          <div class="field">
+            <label>Task</label>
+            <input type="text" [(ngModel)]="newTask" placeholder="Your task" name="newTask">
+          </div>
+          <div class="field">
+            <label>Order</label>
+            <input type="text"  [(ngModel)]="newOrder" placeholder="Order" name="newOrder">
+          </div>
+        </div>
+        <button class="ui positive basic button" type="submit"  (click)="addTask()">   Create Task</button>
+      </form>
+    -->
+
+
+<form class="ui form">
+    <div class="fields">
+        <div class="six wide field">
+            <label>Task</label>
+        </div>
+        <div class="two wide field">
+            <label>Order</label>
+        </div>
+    </div>
+    <div class="fields">
+        <div class="six wide field" >
+             <input type="text" [(ngModel)]="newTask" placeholder="Your task" name="newTask"> 
+        </div>
+
+        <div class="two wide field" >
+            <input type="text"  [(ngModel)]="newOrder" placeholder="Order" name="newOrder">
+        </div>
+        <div class="four wide field" >
+            <button class="ui inverted blue button" type="submit"  (click)="addTask()">   Create Task</button>
+        </div>
+
+    </div>
+</form>
+
+
+
+<div *ngIf="tasksArrayObject" style="padding:3%"> 
+  <div class="ui sixteen column grid " *ngIf="tasksArrayObject">
+ 
+      <div class="row ui bottom attached segment" style="max-width:65%" *ngFor=" let item of tasksArrayObject | orderBy:['order'];let i = index" > 
+        <div class=" twelve wide column">
+            
+          <label  *ngIf="i!=indexId">{{item.task}}</label>
+          
+          <input class="ui input focus" *ngIf=" i==indexId" [(ngModel)]="task">
+        </div>
+      
+        <div class="column four wide column">
+                <div *ngIf="!toggleViewSavebutton || i!=indexId" class="ui yellow vertical animated button"
+                    (click)="editMode2(item.task,item.order,i);toggleViewSavebutton=!toggleViewSavebutton" tabindex="0">
+                        <div class="hidden content" >edit</div>
+                        <div class="visible content">
+                            <i class=" write icon"></i>
+                        </div>
+
+                </div> 
+
+
+                <div *ngIf="toggleViewSavebutton && i==indexId" class="ui green vertical animated button"
+                    (click)="updateTask(item);toggleViewSavebutton=!toggleViewSavebutton" tabindex="0">
+                     <div class="hidden content" >Save</div>
+                     <div class="visible content">
+                        <i class="save icon"></i>
+                     </div>
+
+                 </div> 
+
+                 <div class="ui red vertical animated button"
+                    (click)="deleteTask(item)" tabindex="0">
+                    <div class="hidden content" >Delete</div>
+                    <div class="visible content">
+                         <i class="delete icon"></i>
+                     </div>
+
+                </div> 
+                
+
+        <!--
+            <button  *ngIf="!toggleViewSavebutton || i!=indexId"class="ui primary basic button"(click)="editMode2(item.task,item.order,i);toggleViewSavebutton=!toggleViewSavebutton">Edit</button>
+            <button *ngIf="toggleViewSavebutton && i==indexId"  class="ui positive basic button" (click)="updateTask(item);toggleViewSavebutton=!toggleViewSavebutton">Save</button>
+            <button class="ui negative basic button"(click)="deleteTask(item)">delete</button>
+        -->
+        </div>
+      </div>
+    </div>
+   

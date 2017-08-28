@@ -1,0 +1,41 @@
+<h1>Welcome to my ANgular2 first app</h1>
+<!-- <p>enter email</p>
+<input [(ngModel)]="email">
+
+<p>enter password</p>
+<input [(ngModel)]="password">
+
+<sm-button class="primary" (click)="createUser()" >login</sm-button> -->
+
+
+<!-- <sm-button class="red"  icon="thumbs up" *ngIf="resStatus">{{resStatus.status}} </sm-button> -->
+
+<form class="ui form">
+        <div class="three fields">
+          <div class="field">
+            <label>Email</label>
+            <input type="email" [(ngModel)]="email" placeholder="Email" name="email">
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="text"  [(ngModel)]="password" placeholder="Password" name="password">
+          </div>
+        </div>
+        <button class="ui primary button" type="submit"  (click)="createUser()">Login</button>
+      </form>
+
+      <!-- case of new User -->
+      <div class="ui bottom attached warning message">
+            Don't registered yet?
+          <i class="icon help"></i>
+         <a (click)="navigateToresitration()">Register here</a> 
+        </div>
+
+        <!-- Error message -->
+      <div class="ui negative message" *ngIf="resStatus">
+            <i class="close icon"></i>
+            <div class="header">
+              User name or Password incorrect.
+            </div>
+            <p>Please Login again.
+          </p></div>
